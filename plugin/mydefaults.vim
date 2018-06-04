@@ -1,20 +1,12 @@
-if exists('g:loaded_mydefaults') || &compatible
+if exists('g:loaded_mydefaults')
   finish
 else
   let g:loaded_mydefaults = 'yes'
 endif
 
-if has('autocmd')
-  filetype plugin indent on
-endif
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
+syntax enable
 
 " Use :help 'option' to see the documentation for the given option.
-
-let mapleader = "\<Space>"
-let maploacalleader = ","
 
 set number
 set autoindent
@@ -22,7 +14,6 @@ set smartindent
 set autoread
 set backspace=indent,eol,start
 set complete-=i
-set smarttab
 set nobackup
 set noswapfile
 set hlsearch
@@ -30,6 +21,7 @@ set incsearch
 set ignorecase smartcase
 set smarttab
 set tabstop=2
+set shiftwidth=2
 set showcmd
 set nrformats-=octal
 set laststatus=2
@@ -50,7 +42,6 @@ endif
 
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <esc>
-nnoremap JJJJ <nop>
 
 if !&scrolloff
   set scrolloff=1
@@ -79,11 +70,6 @@ if &tabpagemax < 50
 endif
 if !empty(&viminfo)
   set viminfo^=!
-endif
-
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
 endif
 
 "------------------------------------------------------------------------------
@@ -140,3 +126,8 @@ nnoremap <leader>bl :blast<cr>
 nnoremap <leader>bf :bfirst<cr>
 
 nmap <leader>tn :set number! number?<cr>
+
+" Quickly open a buffer for scribble
+nmap <silent> <leader>bq :e ~/buffer<cr>
+" Quickly open a markdown buffer for scribble
+map <silent> <leader>bx :e ~/buffer.md<cr>
